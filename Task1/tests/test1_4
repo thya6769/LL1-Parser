@@ -1,0 +1,6 @@
+E ::= Prefix ( E )
+E ::= V Tail
+Prefix ::= F
+Prefix ::= epsilon
+Tail ::= + Ε
+Tail ::= epsilon
