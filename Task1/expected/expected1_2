@@ -1,6 +1,6 @@
 First:
- T' ->  epsilon  *
- E' ->  epsilon  +
- E ->  (  id
- T ->  (  id
- F ->  (  id
+ E -> ( id
+ E' -> + epsilon
+ T -> ( id
+ T' -> * epsilon
+ F -> ( id

@@ -1,0 +1,4 @@
+First:
+ A -> a epsilon
+ B -> b epsilon
+ S -> a b c

@@ -1,0 +1,25 @@
+S ::= L
+L ::= I X
+X ::= L
+X ::= epsilon
+I ::= A
+I ::= C
+I ::= W
+A ::= uid := E ;
+C ::= if E then L O fi
+O ::= else L
+O ::= epsilon
+W ::= while E do L done
+E ::= E2 R
+R ::= Op1 E2 R
+R ::= epsilon
+E2 ::= T X2
+X2 ::= Op2 E2
+X2 ::= epsilon
+T ::= c
+T ::= uid
+Op1 ::= <
+Op1 ::= =
+Op1 ::= !=
+Op2 ::= -
+Op2 ::= +
