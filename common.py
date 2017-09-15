@@ -2,11 +2,15 @@ from collections import defaultdict
 from collections import OrderedDict
 from collections import Counter
 
-import sys
 
 non_terminals = OrderedDict() # dictionary of string as key and value as NonTerminal class
 terminals = set()
 grammars = defaultdict(list) # multimap of grammars
+
+
+# key as pair of (non_terminal, terminal) value as list
+parse_table = OrderedDict()
+rules = [] # pair of rules to keep count
 
 
 class NonTerminal:
@@ -26,8 +30,8 @@ class Grammar:
         self.first_set = set()
 
 
-def load_file():
-    input_file = open(sys.argv[1], "r")
+def load_grammar(file_name):
+    input_file = open(file_name, "r")
 
     for line in input_file:
         line = line.split(" ::= ")
@@ -80,7 +84,6 @@ def find_first_sets(non_terminal):
         non_terminal.first_set |= grammar.first_set
 
 
-
 def find_follow_sets():
     # add $ to follow set of start symbol
     list(non_terminals.items())[0][1].follow_set.add("$")
@@ -102,6 +105,7 @@ def find_follow_sets():
             i += 1
         if i >= len(before):
             break
+
 
 def helper_find_follow_sets(non_terminal):
 
@@ -142,3 +146,28 @@ def helper_find_follow_sets(non_terminal):
                     symbols |= non_terminal.follow_set
 
             non_terminals[symbol_x].follow_set |= symbols
+
+
+#TODO:Some problem with non LL1 grammar
+def fill_parse_table():
+    for grammar in grammars.values():
+        for g in grammar:
+            for terminal in g.first_set:
+                if terminal != "epsilon":
+                    # multiple entry in parse table means its not LL(1)
+                    if (g.lhs, terminal) in parse_table:
+                        print("Grammar is not LL(1)!")
+                        exit(0)
+
+                    parse_table[g.lhs, terminal] = g.rhs
+                    if (g.lhs, g.rhs) not in rules:
+                        rules.append((g.lhs, g.rhs))
+
+            if "epsilon" in g.first_set:
+                for terminal in non_terminals[g.lhs].follow_set:
+                    if (g.lhs, terminal) in parse_table:
+                        print("Grammar is not LL(1)!")
+                        exit(0)
+                    parse_table[g.lhs, terminal] = "epsilon"
+                    if (g.lhs, "epsilon") not in rules:
+                        rules.append((g.lhs, "epsilon"))

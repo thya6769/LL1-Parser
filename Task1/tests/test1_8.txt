@@ -1,0 +1,6 @@
+S ::= a a S c c
+S ::= a S c
+S ::= T
+T ::= b b T c c
+T ::= b T c
+T ::= epsilon

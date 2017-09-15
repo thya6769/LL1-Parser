@@ -1,8 +1,9 @@
 
 import common
+import sys
 
 def main():
-    common.load_file()
+    common.load_grammar(sys.argv[1])
     # recursively construct first sets
     for v in common.non_terminals.values():
         if len(v.first_set) == 0:
@@ -12,12 +13,6 @@ def main():
 
     sort_sets()
 
-    # for grammar in common.grammars.values():
-    #     for g in grammar:
-    #         print(g.lhs + " ", end="")
-    #         print(g.first_set)
-
-    # print
     print_sets("First")
     print_sets("Follow")
 
