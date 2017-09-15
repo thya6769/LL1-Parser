@@ -1,7 +1,7 @@
 import sys
 from collections import defaultdict
 from collections import OrderedDict
-
+from collections import Counter
 
 non_terminals = OrderedDict() # dictionary of string as key and value as NonTerminal class
 grammars = defaultdict(list) # multimap of grammars
@@ -48,9 +48,30 @@ def main():
             find_first_sets(v)
 
     list(non_terminals.items())[0][1].follow_set.add("$")
-    for v in non_terminals.values():
-        find_follow_sets(v)
 
+    while True:
+        # store the sets before finding the follow set
+        before = []
+        for non_terminal in non_terminals.values():
+            temp_set = set()
+            temp_set |= non_terminal.follow_set
+            before.append(temp_set)
+
+        for v in non_terminals.values():
+            find_follow_sets(v)
+
+        # compare the follow set after the execution
+        i = 0
+        for non_terminal in non_terminals.values():
+            print(non_terminal.value)
+            print(before[i])
+            print(non_terminal.follow_set)
+            if Counter(before[i]) != Counter(non_terminal.follow_set):
+                break
+            i += 1
+
+        if i >= len(before):
+            break
 
     sort_sets()
 
@@ -112,36 +133,41 @@ def find_first_sets(non_terminal):
 
 def find_follow_sets(non_terminal):
 
-
     for grammar in grammars[non_terminal.value]:
         for i in range(0, len(grammar.rhs)):
             symbols = set()
 
             # S -> X Y
             symbol_x = grammar.rhs[i]
-            symbol_y = "epsilon"
 
             # if its a terminal no need to find follow set
             if symbol_x not in non_terminals:
                 continue
-            # if the index is at the end or
-            # T ::= F
+            # if the index is at the end
+            # or non_terminal -> non_terminal e.g. T ::= F
             elif i == len(grammar.rhs) - 1:
-                find_follow_sets(non_terminal)
                 symbols |= non_terminal.follow_set
             else:
-                symbol_y = grammar.rhs[i+1]
+                need_to_add_follow = True
+                for j in range(i+1, len(grammar.rhs)):
+                    symbol_y = grammar.rhs[j]
 
-            if symbol_y in non_terminals:
-                symbols |= non_terminals[symbol_y].first_set
+                    if symbol_y in non_terminals:
+                        symbols |= non_terminals[symbol_y].first_set
 
-                if "epsilon" in symbols:
-                    find_follow_sets(non_terminal)
+                        if "epsilon" in symbols:
+                            symbols.remove("epsilon")
+                        else:
+                            need_to_add_follow = False
+                            break
+                    else:
+                        need_to_add_follow = False
+                        if symbol_y != "epsilon":
+                            symbols.add(symbol_y)
+                        break
+
+                if need_to_add_follow:
                     symbols |= non_terminal.follow_set
-                    symbols.remove("epsilon")
-            else:
-                if symbol_y != "epsilon":
-                    symbols.add(symbol_y)
 
             non_terminals[symbol_x].follow_set |= symbols
 
