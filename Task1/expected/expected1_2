@@ -1,6 +1,0 @@
-First:
- E -> ( id
- E' -> + epsilon
- T -> ( id
- T' -> * epsilon
- F -> ( id

@@ -57,25 +57,21 @@ def load_grammar(file_name):
 
 
 def find_first_sets(non_terminal):
-
     for grammar in grammars[non_terminal.value]:
         symbols = set()
         for symbol in grammar.rhs:
-            if symbol == non_terminal.value: # skip this to avoid infinite recursion
-                break
-            elif symbol in non_terminals:
+                if symbol in non_terminals:
+                    if len(non_terminals[symbol].first_set) == 0:
+                        find_first_sets(non_terminals[symbol])
+                    symbols |= non_terminals[symbol].first_set
 
-                if len(non_terminals[symbol].first_set) == 0:
-                    find_first_sets(non_terminals[symbol])
-                symbols |= non_terminals[symbol].first_set
-
-                if "epsilon" not in symbols:
+                    if "epsilon" not in symbols:
+                        break
+                else: # symbol is a terminal
+                    symbols.add(symbol)
                     break
-            else: # symbol is a terminal
-                symbols.add(symbol)
-                break
 
-        # store first_set for each grammar
+         # store first_set for each grammar
         if non_terminal == list(non_terminals.items())[0][1] and "epsilon" in symbols:
             symbols.remove("epsilon")
         grammar.first_set = symbols
@@ -148,16 +144,15 @@ def helper_find_follow_sets(non_terminal):
             non_terminals[symbol_x].follow_set |= symbols
 
 
-#TODO:Some problem with non LL1 grammar
 def fill_parse_table():
     for grammar in grammars.values():
         for g in grammar:
+
             for terminal in g.first_set:
                 if terminal != "epsilon":
-                    # multiple entry in parse table means its not LL(1)
+                    # multiple entries in parse table means its not LL(1)
                     if (g.lhs, terminal) in parse_table:
-                        print("Grammar is not LL(1)!")
-                        exit(0)
+                        return False # return False if not LL1
 
                     parse_table[g.lhs, terminal] = g.rhs
                     if (g.lhs, g.rhs) not in rules:
@@ -166,8 +161,11 @@ def fill_parse_table():
             if "epsilon" in g.first_set:
                 for terminal in non_terminals[g.lhs].follow_set:
                     if (g.lhs, terminal) in parse_table:
-                        print("Grammar is not LL(1)!")
-                        exit(0)
+                        return False # return False if not LL1
+
                     parse_table[g.lhs, terminal] = "epsilon"
                     if (g.lhs, "epsilon") not in rules:
                         rules.append((g.lhs, "epsilon"))
+
+    # true if its LL 1
+    return True

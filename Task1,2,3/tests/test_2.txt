@@ -1,0 +1,8 @@
+E ::= T E'
+E' ::= + T E'
+E' ::= epsilon
+T ::= F T2
+T2 ::= * F T2
+T2 ::= epsilon
+F ::= ( E' )
+F ::= i

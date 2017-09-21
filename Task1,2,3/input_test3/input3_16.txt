@@ -1,0 +1,7 @@
+{}o
+{d=i;}o
+{f(i+i)d=i;}o
+{f(i-i)d=i;f(i+i)d=i;}o
+{f(i+i)d=i;f(i-i)d=i;f(i+i)d=i;}o
+chicken
+{f(i+i)}

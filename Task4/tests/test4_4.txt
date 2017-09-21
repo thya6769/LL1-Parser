@@ -1,0 +1,6 @@
+S ::= { A { B b } e }
+A ::= a | {epsilon} | Z
+B ::= [ [ c ] d ]
+C ::= [X[]]
+X ::= [C]
+Z ::= A

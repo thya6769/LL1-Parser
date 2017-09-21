@@ -1,0 +1,6 @@
+S ::= A a
+A ::= B D
+B ::= b | C
+B ::= epsilon
+D ::= d
+D ::= epsilon

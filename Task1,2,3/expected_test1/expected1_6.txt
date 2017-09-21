@@ -1,0 +1,32 @@
+First:
+ A -> u
+ C -> i
+ E -> c u
+ E2 -> c u
+ I -> i u w
+ L -> i u w
+ O -> e epsilon
+ Op1 -> ! < =
+ Op2 -> + -
+ R -> ! < = epsilon
+ S -> i u w
+ T -> c u
+ W -> w
+ X -> i u w epsilon
+ X2 -> + - epsilon
+Follow:
+ A -> e f i u w z $
+ C -> e f i u w z $
+ E -> ; d t
+ E2 -> ! ; < = d t
+ I -> e f i u w z $
+ L -> e f z $
+ O -> f
+ Op1 -> c u
+ Op2 -> c u
+ R -> ; d t
+ S -> $
+ T -> ! + - ; < = d t
+ W -> e f i u w z $
+ X -> e f z $
+ X2 -> ! ; < = d t

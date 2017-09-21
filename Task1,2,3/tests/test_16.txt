@@ -1,0 +1,9 @@
+Prog ::= { Stmts } o
+Stmts ::= Stmt Stmts
+Stmts ::= epsilon
+Stmt ::= d = Expr ;
+Stmt ::= f ( Expr ) Stmt
+Expr ::= i Etail
+Etail ::= + Expr
+Etail ::= - Expr
+Etail ::= epsilon

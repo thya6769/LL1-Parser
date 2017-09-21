@@ -1,0 +1,5 @@
+aabcc
+aabbccc
+aaabaccc
+chicken
+aabbccc

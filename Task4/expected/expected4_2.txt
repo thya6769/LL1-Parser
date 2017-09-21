@@ -1,0 +1,12 @@
+S ::= gK
+A ::= a
+A ::= epsilon
+B ::= Iw
+gK ::= gK A Zf e
+gK ::= epsilon
+Iw ::= CI d
+Iw ::= epsilon
+Zf ::= Zf B b
+Zf ::= epsilon
+CI ::= c
+CI ::= epsilon

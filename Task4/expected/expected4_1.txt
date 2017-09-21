@@ -1,0 +1,8 @@
+S ::= A ha e
+A ::= a
+A ::= epsilon
+B ::= iI d
+ha ::= ha B b
+ha ::= epsilon
+iI ::= c
+iI ::= epsilon

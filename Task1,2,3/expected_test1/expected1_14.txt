@@ -1,0 +1,8 @@
+First:
+ R -> b epsilon
+ T -> a b epsilon
+ T' -> a b
+Follow:
+ R -> c $
+ T -> c $
+ T' -> $

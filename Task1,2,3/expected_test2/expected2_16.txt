@@ -1,0 +1,11 @@
+R[Prog,{] = 0
+R[Stmts,f] = 1
+R[Stmts,d] = 1
+R[Stmts,}] = 2
+R[Stmt,d] = 3
+R[Stmt,f] = 4
+R[Expr,i] = 5
+R[Etail,+] = 6
+R[Etail,-] = 7
+R[Etail,)] = 8
+R[Etail,;] = 8

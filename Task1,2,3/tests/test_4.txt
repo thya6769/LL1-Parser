@@ -1,0 +1,6 @@
+E ::= P ( E )
+E ::= V T
+P ::= F
+P ::= epsilon
+T ::= + Ε
+T ::= epsilon

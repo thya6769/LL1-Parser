@@ -1,0 +1,8 @@
+A ::= 5
+B ::= yy
+8 ::= cc
+cc ::= HH
+yy ::= yy 8
+yy ::= epsilon
+HH ::= d
+HH ::= epsilon

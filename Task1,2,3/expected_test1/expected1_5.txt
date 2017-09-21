@@ -1,0 +1,8 @@
+First:
+ B -> b c d
+ C -> c d
+ S -> a b c d
+Follow:
+ B -> e $
+ C -> e $
+ S -> e $

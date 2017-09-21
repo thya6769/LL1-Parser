@@ -1,0 +1,3 @@
+S ::= LC
+LC ::=
+LC ::= epsilon

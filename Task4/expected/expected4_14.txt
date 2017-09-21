@@ -1,0 +1,11 @@
+T' ::= T
+T ::= rX
+T ::= a lITpB c
+R ::= epsilon
+R ::= b
+rX ::= R
+rX ::= epsilon
+lI ::= lI
+lI ::= epsilon
+pB ::= pB
+pB ::= epsilon

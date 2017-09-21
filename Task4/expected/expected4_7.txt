@@ -1,0 +1,13 @@
+A ::= Y
+A ::= Z
+X ::= A
+X ::= H
+Y ::= a
+Z ::= OG
+H ::= l
+OG ::= OG fj
+OG ::= epsilon
+fj ::= fj xR
+fj ::= epsilon
+xR ::= xR X
+xR ::= epsilon

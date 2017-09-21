@@ -1,0 +1,17 @@
+S ::= cc
+A ::= a
+A ::= vH
+B ::= Fi
+C ::= ng
+cc ::= cc A nW e
+cc ::= epsilon
+vH ::= vH epsilon
+vH ::= epsilon
+Fi ::= Bu d
+Fi ::= epsilon
+ng ::= x
+ng ::= epsilon
+nW ::= nW B b
+nW ::= epsilon
+Bu ::= c
+Bu ::= epsilon

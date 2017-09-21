@@ -1,0 +1,12 @@
+First:
+ E -> ( i
+ E' -> + epsilon
+ F -> ( i
+ T -> ( i
+ T2 -> * epsilon
+Follow:
+ E -> $
+ E' -> ) $
+ F -> ) * + $
+ T -> ) + $
+ T2 -> ) + $

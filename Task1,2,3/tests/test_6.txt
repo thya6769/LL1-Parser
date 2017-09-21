@@ -1,0 +1,25 @@
+S ::= L
+L ::= I X
+X ::= L
+X ::= epsilon
+I ::= A
+I ::= C
+I ::= W
+A ::= u : E ;
+C ::= i E t L O f
+O ::= e L
+O ::= epsilon
+W ::= w E d L z
+E ::= E2 R
+R ::= Op1 E2 R
+R ::= epsilon
+E2 ::= T X2
+X2 ::= Op2 E2
+X2 ::= epsilon
+T ::= c
+T ::= u
+Op1 ::= <
+Op1 ::= =
+Op1 ::= !
+Op2 ::= -
+Op2 ::= +

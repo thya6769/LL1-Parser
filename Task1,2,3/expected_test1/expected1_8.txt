@@ -1,0 +1,6 @@
+First:
+ S -> a b
+ T -> b epsilon
+Follow:
+ S -> c $
+ T -> c $
